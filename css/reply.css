@@ -1,0 +1,43 @@
+.reply-keeper__reply {
+  position: relative;
+  box-sizing: border-box;
+  border: 1px solid black;
+  border-radius: 10px;
+  width: 85%;
+  margin: 10px 0 10px auto;
+  padding: 0 20px 5px;
+}
+.reply__username {
+  //border: 1px solid black;
+  margin: 5px 0;
+  width: 200px;
+}
+.reply__text {
+  //border: 1px solid black;
+  margin: 0 10px 5px;
+}
+.reply__date {
+  //border: 1px solid black;
+  font-size: 12px;
+}
+
+.reply-button {
+  //outline: 1px solid black;
+  width: 15px;
+  height: 15px;
+  background: url(index_icons.png) no-repeat;
+  background-size: 1000%;
+  cursor: pointer;
+}
+.reply__edit-button {
+  position: absolute;
+  top: 5px;
+  right: 35px;
+  background-position: -105px 0;
+}
+.reply__delete-button {
+  position: absolute;
+  top: 5px;
+  right: 10px;
+  background-position: -15px -60px;
+}
