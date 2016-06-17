@@ -11,6 +11,7 @@
   box-shadow: 0 0 30px black;
   z-index: 100;
 }
+
 .fields__userField, 
 .fields__titleField, 
 .fields__textField {
@@ -27,6 +28,21 @@
   width: 70px;
   cursor: pointer;
 }
+.fields__quitBut {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 12px;
+  height: 12px;
+  border: 1px solid grey;
+  border-radius: 6px;
+  background: url(cross_black.png) no-repeat;
+  background-size: 100%;
+  transform: rotateZ(45deg);
+  box-shadow: 0 0 10px black;
+  cursor: pointer;
+}
+
 .fields__postBut:hover {
   box-shadow: 0 0 20px black;
 }

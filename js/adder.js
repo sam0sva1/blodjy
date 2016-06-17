@@ -2,63 +2,77 @@ var adder = document.querySelector('.adder');
 var ContentData = require('./content_data.js');
 var addPost = require('./addpost.js');
 var postKeeper = document.getElementById('post-keeper');
+var addButton = document.getElementById('addButton');
 
+module.exports = function(type) {
 
-module.exports = function() {
+var fields = document.createElement('div');
+fields.setAttribute('id', 'fields');
+fields.className = 'adder__fields';
 
-var fieldHolder = document.createElement('div');
-fieldHolder.setAttribute('id', 'fields');
-fieldHolder.className = 'adder__fields';
+var header = document.createElement('span');
+header.innerHTML = 'Add a new ' + type + '!';
+fields.appendChild(header);
 
-var userNameField = document.createElement('input');
-userNameField.setAttribute('type', 'text');
-userNameField.setAttribute('id', 'userField');
-userNameField.setAttribute('placeholder', 'Your name');
-userNameField.className = 'fields__userField';
-fieldHolder.appendChild(userNameField);
+var userField = document.createElement('input');
+userField.setAttribute('type', 'text');
+userField.setAttribute('id', 'userField');
+userField.setAttribute('placeholder', 'Your name');
+userField.className = 'fields__userField';
+fields.appendChild(userField);
 
-var title = document.createElement('input');
-title.setAttribute('type', 'text');
-title.setAttribute('id', 'titleField');
-title.setAttribute('placeholder', 'Title');
-title.className = 'fields__titleField';
-fieldHolder.appendChild(title);
+if(type === 'post') {
+	var titleField = document.createElement('input');
+	titleField.setAttribute('type', 'text');
+	titleField.setAttribute('id', 'titleField');
+	titleField.setAttribute('placeholder', 'Title');
+	titleField.className = 'fields__titleField';
+	fields.appendChild(titleField);
+}
 
 var textField = document.createElement('textarea');
 textField.setAttribute('rows', 10);
 textField.setAttribute('id', 'textField');
 textField.setAttribute('placeholder', 'How are you?');
 textField.className = 'fields__textField';
-fieldHolder.appendChild(textField);
+fields.appendChild(textField);
+
+var quitButton = document.createElement('div');
+quitButton.setAttribute('id', 'quitButton');
+quitButton.className = 'fields__quitBut';
+fields.appendChild(quitButton);
 
 var postButton = document.createElement('div');
 postButton.setAttribute('id', 'post_but_form');
 postButton.className = 'fields__postBut';
 postButton.innerHTML = 'Post it!';
-fieldHolder.appendChild(postButton);
+fields.appendChild(postButton);
 
 var shadow = document.createElement('div');
 shadow.className = 'shadow';
 
 adder.appendChild(shadow);
-adder.appendChild(fieldHolder);
+adder.appendChild(fields);
 
-var fields = document.getElementById('fields');
-var userField = document.getElementById('userField');
-var titleField = document.getElementById('titleField');
-var textField = document.getElementById('textField');
-var postBut = document.getElementById('post_but_form');
+quitButton.onclick = function(e){
+	var parent = e.target.parentNode;
+	parent.parentNode.removeChild(parent);
+	addButton.classList.remove('hide');
+	var shadow = document.querySelector('.shadow');
+    shadow.parentNode.removeChild(shadow);
+};
 
-postBut.onclick = function(e) {
+postButton.onclick = function(e) {
   var parent = e.target.parentNode;
-  if(parent.children[0].value && parent.children[1].value && parent.children[2].value) {
-    addPost( new ContentData() );
+
+  if(userField.value && titleField.value && textField.value) {
+     addPost( new ContentData(type) );
+
     parent.parentNode.removeChild(parent);
-    document.querySelector('.shadow').parentNode.removeChild(document.querySelector('.shadow'));
+    addButton.classList.remove('hide');
+
+    shadow.parentNode.removeChild(shadow);
   }
 };
 
 };
-
-
-
