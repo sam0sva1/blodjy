@@ -1,4 +1,4 @@
-function showDate() {
+module.exports = function() {
   
   var date = new Date();
   
@@ -11,6 +11,4 @@ function showDate() {
   var formatDate = day + '-' + month + '-' + year + ' ' + hour  + ':' + minute;
   
   return formatDate;
-}
-
-module.exports = showDate;
+};
