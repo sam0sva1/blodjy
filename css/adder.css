@@ -1,3 +1,16 @@
+.shadow {
+  border: 5px solid red;
+  position: fixed;
+  z-index: 99;
+  width: 100%;
+  right: 0;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  background-color: white;
+  opacity: 0.8;
+}
+
 .adder__fields {
   left: 20%;
   position: fixed;
@@ -10,6 +23,7 @@
   border-radius: 3px;
   box-shadow: 0 0 30px black;
   z-index: 100;
+  opacity: 1;
 }
 
 .fields__userField, 
@@ -36,7 +50,7 @@
   height: 12px;
   border: 1px solid grey;
   border-radius: 6px;
-  background: url(cross_black.png) no-repeat;
+  background: url(images/cross_black.png) no-repeat;
   background-size: 100%;
   transform: rotateZ(45deg);
   box-shadow: 0 0 10px black;
@@ -56,14 +70,14 @@
   border-radius: 32px;
   width: 64px;
   height: 64px;
-  background: url(cross_black.png) no-repeat;
+  background: url(images/cross_black.png) no-repeat;
   background-size: 100%;
   box-shadow: 0 0 10px #933939;
   cursor: pointer;
   margin: 1%;
 }
 .add-button:hover {
-  background: url(cross_white-grey.png) no-repeat;
+  background: url(images/cross_white-grey.png) no-repeat;
   background-size: 100%;
   box-shadow: 0 0 12px #338A6F;
 }

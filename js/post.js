@@ -1,18 +1,5 @@
+var Button = require('./button.js');
 var CommentView = require('./comment.js');
-//var addingShield = require('./adder.js'); Не хочет открывать окно для заполнения, так же волнует adder.js строка: 69
-var addComment = require('./addcomment.js');
-var ContentData = require('./content_data.js');
-
-function PostButton(class_name) {
-  var button = document.createElement('div');
-  button.className = 'post-button';
-
-  var type = class_name.match(/edit|delete|comment/); //Регулярка возвращает массив, а не строку.
-  button.setAttribute('data-action', type[0]); //ГНИЛОЕ МЕСТО! 
-
-  button.classList.add(class_name);
-  return button;
-}
 
 module.exports = function(info) {
   
@@ -44,9 +31,9 @@ module.exports = function(info) {
   date.innerHTML = info.date;
   postContent.appendChild(date);
   
-  postContent.appendChild( new PostButton('post__edit-button') );
-  postContent.appendChild( new PostButton('post__delete-button') );
-  postContent.appendChild( new PostButton('post__comment-button') );
+  postContent.appendChild( new Button('post__edit-button') );
+  postContent.appendChild( new Button('post__delete-button') );
+  postContent.appendChild( new Button('post__commenting-button') );
   
   post.appendChild(postContent);
   
@@ -60,23 +47,24 @@ module.exports = function(info) {
   }
   
   post.appendChild(commentKeeper);
-
-  postContent.addEventListener('click', function(e){
-    var target = e.target;
-    var postItSelf = this.parentNode.parentNode;
-    var type = target.getAttribute('data-action');
-    switch(type) {
-      case 'delete':
-      postItSelf.removeChild(this.parentNode);
-      break;
-
-      case 'comment':
-      var comKeep = postItSelf.querySelector('post__comment-keeper');
-
-      addComment( new ContentData(type), comKeep);
-      break;
-    }
-  });
   
   return post;
 };
+
+
+  // postContent.addEventListener('click', function(e){
+  //   var target = e.target;
+  //   var postItSelf = this.parentNode.parentNode;
+  //   var type = target.getAttribute('data-action');
+  //   switch(type) {
+  //     case 'delete':
+  //     postItSelf.removeChild(this.parentNode);
+  //     break;
+
+  //     case 'comment':
+  //     var comKeep = postItSelf.querySelector('post__comment-keeper');
+
+  //     addContent( new ContentData(type), comKeep);
+  //     break;
+  //   }
+  // });

@@ -1,11 +1,5 @@
+var Button = require('./button.js');
 var ReplyView = require('./reply.js');
-
-function CommentButton(className) {
-  var button = document.createElement('div');
-  button.className = 'comment-button';
-  button.classList.add(className);
-  return button;
-}
 
 module.exports = function(info) {
   
@@ -31,9 +25,9 @@ module.exports = function(info) {
   date.innerHTML = info.date;
   commentContent.appendChild(date);
   
-  commentContent.appendChild(new CommentButton('comment__edit-button'));
-  commentContent.appendChild(new CommentButton('comment__delete-button'));
-  commentContent.appendChild(new CommentButton('comment__reply-button'));
+  commentContent.appendChild(new Button('comment__edit-button'));
+  commentContent.appendChild(new Button('comment__delete-button'));
+  commentContent.appendChild(new Button('comment__replying-button'));
   
   comment.appendChild(commentContent);
   

@@ -45,7 +45,7 @@
   //outline: 1px solid black;
   width: 30px;
   height: 30px;
-  background: url(index_icons.png) no-repeat;
+  background: url(images/index_icons.png) no-repeat;
   background-size: 1000%;
   cursor: pointer;
 }
@@ -59,7 +59,7 @@
   right: 5px;
   background-position: -30px -120px;
 }
-.post__comment-button{
+.post__commenting-button{
   bottom: 7px;
   right: 10px;
   background-position: -180px -60px;

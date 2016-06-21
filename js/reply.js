@@ -1,11 +1,4 @@
-
-
-function ReplyButton(className) {
-  var button = document.createElement('div');
-  button.className = 'reply-button';
-  button.classList.add(className);
-  return button;
-}
+var Button = require('./button.js');
 
 module.exports = function(info) {
   var reply = document.createElement('div');
@@ -26,8 +19,8 @@ module.exports = function(info) {
   date.innerHTML = info.date;
   reply.appendChild(date);
   
-  reply.appendChild(new ReplyButton('reply__edit-button'));
-  reply.appendChild(new ReplyButton('reply__delete-button'));
-  
+  reply.appendChild(new Button('reply__edit-button'));
+  reply.appendChild(new Button('reply__delete-button'));
+
   return reply;
 };

@@ -1,10 +1,9 @@
-var adder = document.querySelector('.adder');
+var addContent = require('./addcontent.js');
 var ContentData = require('./content_data.js');
-var addPost = require('./addpost.js');
-var postKeeper = document.getElementById('post-keeper');
-var addButton = document.getElementById('addButton');
 
-module.exports = function(type) {
+module.exports = function(type, objectContainer) {
+
+var popup = document.createElement('div');
 
 var fields = document.createElement('div');
 fields.setAttribute('id', 'fields');
@@ -38,12 +37,12 @@ textField.className = 'fields__textField';
 fields.appendChild(textField);
 
 var quitButton = document.createElement('div');
-quitButton.setAttribute('id', 'quitButton');
+quitButton.setAttribute('data-button', 'quitButton');
 quitButton.className = 'fields__quitBut';
 fields.appendChild(quitButton);
 
 var postButton = document.createElement('div');
-postButton.setAttribute('id', 'post_but_form');
+postButton.setAttribute('data-button', 'post_but_form');
 postButton.className = 'fields__postBut';
 postButton.innerHTML = 'Post it!';
 fields.appendChild(postButton);
@@ -51,28 +50,70 @@ fields.appendChild(postButton);
 var shadow = document.createElement('div');
 shadow.className = 'shadow';
 
-adder.appendChild(shadow);
-adder.appendChild(fields);
+popup.appendChild(fields);
+popup.appendChild(shadow);
 
-quitButton.onclick = function(e){
-	var parent = e.target.parentNode;
-	parent.parentNode.removeChild(parent);
-	addButton.classList.remove('hide');
-	var shadow = document.querySelector('.shadow');
-    shadow.parentNode.removeChild(shadow);
+// quitButton.onclick = function(e){
+
+// 	var popUpWindow = e.target.parentNode.parentNode;
+// 	var containerForPopUp = popUpWindow.parentNode;
+	
+// };
+
+// postButton.onclick = function(e) {
+//   var popUpWindow = e.target.parentNode.parentNode;
+//   var containerForPopUp = popUpWindow.parentNode;
+
+
+// };
+
+popup.addEventListener('click', function(e){
+	var target = e.target;
+
+	if( target.classList.contains('shadow')) {
+  		console.log(target);
+  		var popUpWindow = target.parentNode;
+  		var containerForPopUp = popUpWindow.parentNode;
+  		containerForPopUp.removeChild(popUpWindow);
+		addButton.classList.remove('hide');
+  	}
+	
+  	if( !target.hasAttribute('data-button')) {
+  		return;
+  	}
+
+  	var popUpWindow = target.parentNode.parentNode;
+  	var containerForPopUp = popUpWindow.parentNode;
+
+	var action = target.getAttribute('data-button');
+	switch(action) {
+	  	case 'post_but_form':
+
+	  		if(userField.value && textField.value) {
+	  			
+	  			if(!titleField || !titleField.value){
+	  				return;
+	  			}
+
+     			addContent( new ContentData(type), objectContainer);
+
+    			containerForPopUp.removeChild(popUpWindow);
+    			addButton.classList.remove('hide');
+  			}
+
+	  		break;
+
+	  	case 'quitButton':
+
+	  		containerForPopUp.removeChild(popUpWindow);
+			addButton.classList.remove('hide');
+	  		break;
+
+	}
+});
+
+return popup;
+
 };
 
-postButton.onclick = function(e) {
-  var parent = e.target.parentNode;
 
-  if(userField.value && titleField.value && textField.value) {
-     addPost( new ContentData(type) );
-
-    parent.parentNode.removeChild(parent);
-    addButton.classList.remove('hide');
-
-    shadow.parentNode.removeChild(shadow);
-  }
-};
-
-};

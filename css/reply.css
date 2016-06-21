@@ -25,7 +25,7 @@
   //outline: 1px solid black;
   width: 15px;
   height: 15px;
-  background: url(index_icons.png) no-repeat;
+  background: url(images/index_icons.png) no-repeat;
   background-size: 1000%;
   cursor: pointer;
 }
