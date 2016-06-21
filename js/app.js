@@ -11,7 +11,8 @@ var addButton = document.getElementById('addButton');
 addButton.onclick = function(e) {
 	e.target.hide();
 	var type = e.target.getAttribute('data-addtype');
-	adder.appendChild( new addingShield(type, postKeeper));
+	//adder.appendChild( new addingShield(type, postKeeper));
+	new addingShield(type, postKeeper);
 };
 
 Element.prototype.hide = function() {

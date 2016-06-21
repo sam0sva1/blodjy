@@ -6,9 +6,15 @@ module.exports = function ContentData(type) {
   var newMessage = {};
     newMessage.id = index + (++postKeeper.number);
     newMessage.userName = userField.value;
-    newMessage.title = titleField.value;
+    
     newMessage.text = textField.value;
     newMessage.date = showDate();
-    newMessage.commentKeeper = [];
+    
+    if(index === 'p') {
+    	newMessage.title = titleField.value;
+    	newMessage.commentKeeper = [];
+	} else if (index === 'c') {
+		newMessage.replyKeeper = [];
+	}
   return newMessage;
 };

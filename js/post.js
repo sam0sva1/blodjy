@@ -1,7 +1,14 @@
+var contentAdder = require('./addcontent.js');
 var Button = require('./button.js');
 var CommentView = require('./comment.js');
+var ContentData = require('./content_data.js');
+var addingShield = require('./adder.js');
 
 module.exports = function(info) {
+
+  var contentAdder = require('./addcontent.js');
+  var Button = require('./button.js');
+  var CommentView = require('./comment.js');
   
   var post = document.createElement('div');
   post.className = 'post-keeper__post';
@@ -47,24 +54,36 @@ module.exports = function(info) {
   }
   
   post.appendChild(commentKeeper);
+
+  postContent.addEventListener('click', function(e){
+    var target = e.target;
+    if( !target.hasAttribute('data-action') ) {
+      return;
+    }
+    var wholePost = this.parentNode;
+    var allPostsKeeper = wholePost.parentNode;
+    var type = target.getAttribute('data-action');
+    console.log(type);
+
+    switch(type) {
+      case 'delete':
+        allPostsKeeper.removeChild(wholePost);
+        break;
+
+      case 'commenting':
+        addingShield(type, commentKeeper);
+        break;
+
+      case 'edit':
+        // var valueOfOuterHTML = this.querySelector('content-keeper__post-text').outerHTML;
+        // valueOfOuterHTML = valueOfOuterHTML.replace(/<p/, '<textarea');
+        // valueOfOuterHTML = valueOfOuterHTML.replace(/<\/p>/, '</textarea>');
+        break;
+    }
+
+  });
   
   return post;
 };
 
 
-  // postContent.addEventListener('click', function(e){
-  //   var target = e.target;
-  //   var postItSelf = this.parentNode.parentNode;
-  //   var type = target.getAttribute('data-action');
-  //   switch(type) {
-  //     case 'delete':
-  //     postItSelf.removeChild(this.parentNode);
-  //     break;
-
-  //     case 'comment':
-  //     var comKeep = postItSelf.querySelector('post__comment-keeper');
-
-  //     addContent( new ContentData(type), comKeep);
-  //     break;
-  //   }
-  // });

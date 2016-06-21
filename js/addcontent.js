@@ -1,28 +1,30 @@
-var PostView = require('./post.js');
-var CommentView = require('./comment.js');
-var ReplyView = require('./reply.js');
 
-//var postKeeper = document.getElementById('post-keeper');
+module.exports =function(dataBase, object) {
 
-// module.exports = function addContent(dateBase, object) {
-// 	//console.log(PostView());
-// 	  if(dateBase instanceof Array) {
-//     dateBase.forEach(function(item, i, arr) {
-//       object.appendChild(new PostView(item));
-//     });
-//   } else {
-//     object.appendChild(new PostView(dateBase));
-//   }
-// };
+	if(dataBase instanceof Array) {
+	  	var PostView = require('./post.js');
+    	dataBase.forEach(function(item, i, arr) {
+      		object.insertBefore(new PostView(item), object.firstElementChild);
+    	});
 
-module.exports =function(dateBase, object) {
+  	} else {
 
-	  if(dateBase instanceof Array) {
-    dateBase.forEach(function(item, i, arr) {
-      object.insertBefore(new PostView(item), object.firstElementChild);
-    });
-  } else {
-    object.insertBefore(new PostView(dateBase), object.firstElementChild);
-  }
-  
+  		var changeableContentMakerReferense;
+  		console.log(dataBase.id[0]);
+	
+		switch(dataBase.id[0]) {
+			case 'p':
+				changeableContentMakerReferense = require('./post.js');
+				break;
+			case 'c':
+				changeableContentMakerReferense = require('./comment.js');
+				break;
+			case 'r':
+				changeableContentMakerReferense = require('./reply.js');
+				break;
+		}
+
+    	object.insertBefore(new changeableContentMakerReferense(dataBase), object.firstElementChild);
+  	}
+
 };

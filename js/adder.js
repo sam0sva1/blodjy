@@ -1,5 +1,6 @@
 var addContent = require('./addcontent.js');
 var ContentData = require('./content_data.js');
+var addShieldContainer = document.getElementById('adder');
 
 module.exports = function(type, objectContainer) {
 
@@ -53,20 +54,6 @@ shadow.className = 'shadow';
 popup.appendChild(fields);
 popup.appendChild(shadow);
 
-// quitButton.onclick = function(e){
-
-// 	var popUpWindow = e.target.parentNode.parentNode;
-// 	var containerForPopUp = popUpWindow.parentNode;
-	
-// };
-
-// postButton.onclick = function(e) {
-//   var popUpWindow = e.target.parentNode.parentNode;
-//   var containerForPopUp = popUpWindow.parentNode;
-
-
-// };
-
 popup.addEventListener('click', function(e){
 	var target = e.target;
 
@@ -91,9 +78,9 @@ popup.addEventListener('click', function(e){
 
 	  		if(userField.value && textField.value) {
 	  			
-	  			if(!titleField || !titleField.value){
-	  				return;
-	  			}
+	  			// if(!titleField || !titleField.value){
+	  			// 	return;
+	  			// }
 
      			addContent( new ContentData(type), objectContainer);
 
@@ -112,7 +99,9 @@ popup.addEventListener('click', function(e){
 	}
 });
 
-return popup;
+
+addShieldContainer.appendChild(popup);
+//return popup;
 
 };
 

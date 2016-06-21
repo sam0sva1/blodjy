@@ -32,6 +32,7 @@ module.exports = function(info) {
   comment.appendChild(commentContent);
   
   var replyKeeper = document.createElement('div');
+  replyKeeper.setAttribute('data-content', 'reply');
   replyKeeper.className = 'comment__reply-keeper';
   
   if(info.replyKeeper.length > 0) {
