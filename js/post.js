@@ -4,19 +4,6 @@ var CommentView = require('./comment.js');
 var ContentData = require('./content_data.js');
 var addingShield = require('./adder.js');
 
-function textChangerSwitcher(contentHoldingElement, offOnFlag){
-  var textElementToChange = contentHoldingElement.querySelector('content-keeper__post-text');
-  var ChangingValueBuffer = textElementToChange.outerHTML;
-  if(offOnFlag) {
-    ChangingValueBuffer = ChangingValueBuffer.replace(/<p/, '<textarea').replace(/<\/p>/, '</textarea>');
-  } else {
-    ChangingValueBuffer = ChangingValueBuffer.replace(/<textarea/, '<p').replace(/<\/textarea/, '</p>');
-  }
-  textElementToChange.outerHTML = ChangingValueBuffer;
-}
-
-
-
 module.exports = function(info) {
 
   var contentAdder = require('./addcontent.js');
@@ -104,17 +91,15 @@ module.exports = function(info) {
         document.body.onclick = function(event) {
 
           if(event.target.getAttribute('data-action') === 'confirm') {
-            console.log(event.target.getAttribute('data-action'));
 
-          textElementToChange.classList.remove('editing');
-          textElementToChange.contentEditable = false;
-            console.log(1);
-          var confirmButton = this.querySelector('.post__confirm-button');
-          confirmButton.parentNode.replaceChild(editButton, confirmButton);
-            console.log(2);
-          shadowHolder.removeChild(shadow);
-          document.onclick = '';
-            console.log(3);
+            textElementToChange.classList.remove('editing');
+            textElementToChange.contentEditable = false;
+
+            var confirmButton = this.querySelector('.post__confirm-button');
+            confirmButton.parentNode.replaceChild(editButton, confirmButton);
+
+            shadowHolder.removeChild(shadow);
+            document.onclick = '';
           }
 
         };
@@ -126,5 +111,3 @@ module.exports = function(info) {
   
   return post;
 };
-
-

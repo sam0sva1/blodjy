@@ -22,6 +22,7 @@
 }
 
 .reply-button {
+  position: absolute;
   //outline: 1px solid black;
   width: 15px;
   height: 15px;
@@ -30,13 +31,17 @@
   cursor: pointer;
 }
 .reply__edit-button {
-  position: absolute;
   top: 5px;
   right: 35px;
   background-position: -105px 0;
 }
+.reply__confirm-button {
+  top: 5px;
+  right: 35px;
+  z-index: 100;
+  background-position: -15px 0;
+}
 .reply__delete-button {
-  position: absolute;
   top: 5px;
   right: 10px;
   background-position: -15px -60px;

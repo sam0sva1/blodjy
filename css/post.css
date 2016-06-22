@@ -32,14 +32,6 @@
   margin: 0 10px;
 }
 
-textarea.content-keeper__post-text {
-  display: inline;
-  width: 99%;
-  margin: 0 10px;
-  margin-right: 10px;
-  height: 400px;
-}
-
 .content-keeper__post-date {
   display: inline-block;
   //border: 1px solid black;
