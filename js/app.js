@@ -19,15 +19,4 @@ Element.prototype.hide = function() {
   this.classList.add('hide');
 };
 
-// function addContent(dateBase, obj) {
-// 	  if(dateBase instanceof Array) {
-//     dateBase.forEach(function(item, i, arr) {
-//       obj.insertBefore(new PostView(item), obj.firstElementChild);
-//     });
-//   } else {
-//     obj.insertBefore(new PostView(dateBase), obj.firstElementChild);
-//   }
-// }
-
-
 addContent(posts, postKeeper);

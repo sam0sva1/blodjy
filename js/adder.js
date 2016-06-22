@@ -77,10 +77,9 @@ popup.addEventListener('click', function(e){
 	  	case 'post_but_form':
 
 	  		if(userField.value && textField.value) {
-	  			
-	  			// if(!titleField || !titleField.value){
-	  			// 	return;
-	  			// }
+	  			if( titleField && !titleField.value ){
+	  				return;
+	  			}
 
      			addContent( new ContentData(type), objectContainer);
 

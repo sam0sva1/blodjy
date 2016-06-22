@@ -32,6 +32,14 @@
   margin: 0 10px;
 }
 
+textarea.content-keeper__post-text {
+  display: inline;
+  width: 99%;
+  margin: 0 10px;
+  margin-right: 10px;
+  height: 400px;
+}
+
 .content-keeper__post-date {
   display: inline-block;
   //border: 1px solid black;
@@ -53,6 +61,12 @@
   top: 5px;
   right: 40px;
   background-position: -210px -0px;
+}
+.post__confirm-button{
+  top: 5px;
+  right: 40px;
+  z-index: 100;
+  background-position: -30px 0px;
 }
 .post__delete-button{
   top: 5px;
