@@ -58,9 +58,8 @@ popup.addEventListener('click', function(e){
 	var target = e.target;
 
 	if( target.classList.contains('shadow')) {
-  		console.log(target);
-  		var popUpWindow = target.parentNode;
-  		var containerForPopUp = popUpWindow.parentNode;
+  		let popUpWindow = target.parentNode;
+  		let containerForPopUp = popUpWindow.parentNode;
   		containerForPopUp.removeChild(popUpWindow);
 		addButton.classList.remove('hide');
   	}
@@ -69,8 +68,8 @@ popup.addEventListener('click', function(e){
   		return;
   	}
 
-  	var popUpWindow = target.parentNode.parentNode;
-  	var containerForPopUp = popUpWindow.parentNode;
+  	let popUpWindow = target.parentNode.parentNode;
+  	let containerForPopUp = popUpWindow.parentNode;
 
 	var action = target.getAttribute('data-button');
 	switch(action) {

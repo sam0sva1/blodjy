@@ -5,6 +5,7 @@ var gulp = require('gulp'),
 	csslint = require('gulp-csslint');
 	cssConcat = require('gulp-concat-css');
 
+	babel = require('gulp-babel');
 	jshint = require('gulp-jshint');
 	webpack = require('webpack-stream');
 	webpackConfig = require("./webpack.config.js");
@@ -23,11 +24,34 @@ gulp.task('jscheck', function() {
 		.pipe(jshint.reporter('default'));
 });
 
+gulp.task('babel', function() {
+	gulp.src('js/*.js')
+		.pipe(babel({
+			presets: ['es2015']
+		}))
+		.pipe(gulp.dest('js/es2015ed'));
+});
+
 gulp.task('pack', function() {
-	gulp.src('js/app.js')
+	gulp.src('js/*.js')
+		.pipe(jshint())
+		.pipe(jshint.reporter('default'))
+		// .pipe(babel({
+		// 	presets: ['es2015']
+		// }))
 		.pipe( webpack(webpackConfig) )
+		// .pipe(uglify())
+		.pipe(gulp.dest('pages'));
+	gulp.src('css/*.css')
+		.pipe(cssConcat('index.css'))
+		.pipe(apref({
+			browsers: ['last 10 versions'],
+			cascade: false
+		}))
 		.pipe(gulp.dest('pages'));
 });
+
+
 
 gulp.task('browserSync', function() {
 	browserSync.init({

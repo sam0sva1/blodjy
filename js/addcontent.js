@@ -9,22 +9,21 @@ module.exports =function(dataBase, object) {
 
   	} else {
 
-  		var changeableContentMakerReferense;
-  		console.log(dataBase.id[0]);
+  		var changeableContentMakeingReference;
 	
 		switch(dataBase.id[0]) {
 			case 'p':
-				changeableContentMakerReferense = require('./post.js');
+				changeableContentMakeingReference = require('./post.js');
 				break;
 			case 'c':
-				changeableContentMakerReferense = require('./comment.js');
+				changeableContentMakeingReference = require('./comment.js');
 				break;
 			case 'r':
-				changeableContentMakerReferense = require('./reply.js');
+				changeableContentMakeingReference = require('./reply.js');
 				break;
 		}
 
-    	object.insertBefore(new changeableContentMakerReferense(dataBase), object.firstElementChild);
+    	object.insertBefore(new changeableContentMakeingReference(dataBase), object.firstElementChild);
   	}
 
 };

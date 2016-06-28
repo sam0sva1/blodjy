@@ -4,10 +4,13 @@ var app = express();
 app.use(express.static('pages'));
 app.use(express.static('pages/images'));
 
-app.get('/', function(req, res) {
-
+app.get('/posts', function(req, res) {
+	var posts = require('./files/posts.js');
+	res.status(200)
+		.json(posts)
+		.end();
 });
 
-app.listen('2000', function() {
-	console.log('runs...2000');
+app.listen(3000, function () {
+  console.log('Example app listening on port 3000!');
 });
