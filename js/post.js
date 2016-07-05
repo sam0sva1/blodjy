@@ -1,12 +1,13 @@
-var contentAdder = require('./addcontent.js');
+// var contentAdder = require('./addcontent.js');
 var Button = require('./button.js');
 var CommentView = require('./comment.js');
 var ContentData = require('./content_data.js');
 var addingShield = require('./adder.js');
+var dataDestroyer = require('./data_destroyer.js');
 
 module.exports = function(info) {
 
-  var contentAdder = require('./addcontent.js');
+  // var contentAdder = require('./addcontent.js');
   var Button = require('./button.js');
   var CommentView = require('./comment.js');
   
@@ -40,7 +41,7 @@ module.exports = function(info) {
   
   postContent.appendChild( new Button('post__edit-button') );
   postContent.appendChild( new Button('post__delete-button') );
-  postContent.appendChild( new Button('post__commenting-button') );
+  postContent.appendChild( new Button('post__comment-button') );
   
   post.appendChild(postContent);
   
@@ -67,10 +68,16 @@ module.exports = function(info) {
 
     switch(type) {
       case 'delete':
-        allPostsKeeper.removeChild(wholePost);
+        dataDestroyer(info.type, {id:wholePost.id})
+          .then(function(confirm) {
+            postContent.innerHTML = confirm;
+            setTimeout(function() {
+              allPostsKeeper.removeChild(wholePost);
+            }, 2000);
+          });
         break;
 
-      case 'commenting':
+      case 'comment':
         addingShield(type, commentKeeper);
         break;
 

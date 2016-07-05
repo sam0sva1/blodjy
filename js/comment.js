@@ -28,7 +28,7 @@ module.exports = function(info) {
   
   commentContent.appendChild(new Button('comment__edit-button'));
   commentContent.appendChild(new Button('comment__delete-button'));
-  commentContent.appendChild(new Button('comment__replying-button'));
+  commentContent.appendChild(new Button('comment__reply-button'));
   
   comment.appendChild(commentContent);
   
@@ -59,7 +59,7 @@ module.exports = function(info) {
         allCommentKeeper.removeChild(wholeComment);
         break;
 
-      case 'replying':
+      case 'reply':
         addingShield(type, replyKeeper);
         break;
 

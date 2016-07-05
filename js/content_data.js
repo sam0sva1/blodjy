@@ -2,19 +2,19 @@ var postKeeper = document.getElementById('post-keeper');
 var showDate = require('./show_date.js');
 
 module.exports = function ContentData(type) {
-	var index = type.slice(0, 1);
   var newMessage = {};
-    newMessage.id = index + (++postKeeper.number);
-    newMessage.userName = userField.value;
+
+  newMessage.type = type;
+  newMessage.userName = userField.value;
     
-    newMessage.text = textField.value;
-    newMessage.date = showDate();
+  newMessage.text = textField.value;
+  newMessage.date = showDate();
     
-    if(index === 'p') {
-    	newMessage.title = titleField.value;
-    	newMessage.commentKeeper = [];
-	} else if (index === 'c') {
-		newMessage.replyKeeper = [];
-	}
+  if(type === 'post') {
+  	newMessage.title = titleField.value;
+  	newMessage.commentKeeper = [];
+  } else if (type === 'comment') {
+	  newMessage.replyKeeper = [];
+  }
   return newMessage;
 };

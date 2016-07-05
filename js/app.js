@@ -21,6 +21,7 @@ dataLoader('/posts')
 	.then(
 		result => {
 			var posts = JSON.parse(result);
+			console.log(posts);
 			addContent(posts, postKeeper);
 		},
 		error => {

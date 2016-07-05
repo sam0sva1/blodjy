@@ -99,8 +99,6 @@ popup.addEventListener('click', function(e){
 
 
 addShieldContainer.appendChild(popup);
-//return popup;
-
 };
 
 

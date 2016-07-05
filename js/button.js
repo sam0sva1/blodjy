@@ -1,9 +1,11 @@
 module.exports = function(class_name) {
   var button = document.createElement('div');
-  var contentType = class_name.match(/post|comment|reply/);
+  
+  var splitedClassName = class_name.split('__');
+  var contentType = splitedClassName[0];
   button.className = contentType + '-button';
 
-  var type = class_name.match(/edit|delete|confirm|commenting|replying/);
+  var type = splitedClassName[1].match(/edit|delete|confirm|comment|reply/);
   button.setAttribute('data-action', type);
 
   button.classList.add(class_name);
